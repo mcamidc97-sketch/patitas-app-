@@ -299,6 +299,14 @@ function Header({
           </a>
           {userEmail ? (
             <>
+              {/* Perfil: inicial en móvil, nombre en desktop */}
+              <Link
+                href={perfilHref}
+                className="flex sm:hidden items-center justify-center w-8 h-8 rounded-full bg-orange-100 text-orange-600 font-bold text-sm hover:bg-orange-200 transition-colors flex-shrink-0"
+                title="Mi perfil"
+              >
+                {(label ?? '?').charAt(0).toUpperCase()}
+              </Link>
               <Link
                 href={perfilHref}
                 className="text-xs text-stone-500 font-medium hidden sm:block truncate max-w-28 hover:text-orange-500 transition-colors"
@@ -324,13 +332,13 @@ function Header({
             <>
               <Link
                 href="/login"
-                className="text-sm text-stone-600 font-medium hover:text-orange-500 transition-colors hidden sm:block"
+                className="text-sm font-semibold text-orange-500 hover:text-orange-600 transition-colors"
               >
                 Ingresar
               </Link>
               <Link
                 href="/registro"
-                className="text-sm text-stone-600 font-medium hover:text-orange-500 transition-colors hidden sm:block"
+                className="hidden sm:block text-sm text-stone-600 font-medium hover:text-orange-500 transition-colors"
               >
                 Registrarse
               </Link>
