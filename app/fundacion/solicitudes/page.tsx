@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import { iniciarConversacion } from '@/app/actions/chat'
+import RouterRefresher from '@/app/components/RouterRefresher'
 
 export const metadata: Metadata = {
   title: 'Solicitudes — Patitas',
@@ -75,6 +76,7 @@ export default async function SolicitudesPage() {
 
   return (
     <div className="min-h-screen bg-orange-50 font-sans relative overflow-x-hidden">
+      <RouterRefresher />
       <span className="pointer-events-none select-none absolute top-20 right-3 text-6xl opacity-[0.06] paw-float" aria-hidden="true">🐾</span>
       <span className="pointer-events-none select-none absolute top-1/2 left-2 text-5xl opacity-[0.06] bone-sway" aria-hidden="true">🦴</span>
       <span className="pointer-events-none select-none absolute bottom-28 right-5 text-4xl opacity-[0.06] paw-float-slow" aria-hidden="true">🐾</span>
