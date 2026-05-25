@@ -255,15 +255,26 @@ export default async function Home() {
   return (
     <div className="min-h-screen bg-orange-50 font-sans">
       <Header userEmail={userEmail} nombreDisplay={nombreDisplay} esFundacion={esFundacion} />
-      <HeroSection />
-      <StatsSection />
-      {esFundacion && <PanelFundacion nombre={nombreFundacion} solicitudesCount={solicitudesCount} />}
-      {!esFundacion && <FundacionesSection fundaciones={fundaciones} />}
-      {usuarioLogueado && perritosFavoritos.length > 0 && (
-        <MisFavoritosSection perritos={perritosFavoritos} favoritosArr={favoritosArr} />
-      )}
-      <DogsSection perritos={perritosParaMostrar} favoritosArr={favoritosArr} usuarioLogueado={usuarioLogueado} esFundacion={esFundacion} />
-      <Footer />
+
+      {/* ── MÓVIL ── solo registro/ingreso + fundaciones */}
+      <div className="block sm:hidden">
+        {!usuarioLogueado && <MobileHero />}
+        {esFundacion && <PanelFundacion nombre={nombreFundacion} solicitudesCount={solicitudesCount} />}
+        <FundacionesSection fundaciones={fundaciones} />
+      </div>
+
+      {/* ── DESKTOP ── layout completo */}
+      <div className="hidden sm:block">
+        <HeroSection />
+        <StatsSection />
+        {esFundacion && <PanelFundacion nombre={nombreFundacion} solicitudesCount={solicitudesCount} />}
+        {!esFundacion && <FundacionesSection fundaciones={fundaciones} />}
+        {usuarioLogueado && perritosFavoritos.length > 0 && (
+          <MisFavoritosSection perritos={perritosFavoritos} favoritosArr={favoritosArr} />
+        )}
+        <DogsSection perritos={perritosParaMostrar} favoritosArr={favoritosArr} usuarioLogueado={usuarioLogueado} esFundacion={esFundacion} />
+        <Footer />
+      </div>
     </div>
   )
 }
@@ -348,6 +359,39 @@ function Header({
         </nav>
       </div>
     </header>
+  )
+}
+
+// ── MOBILE HERO ─────────────────────────────────────────────
+
+function MobileHero() {
+  return (
+    <section className="px-5 pt-8 pb-6 text-center">
+      <div className="text-5xl mb-3">🐾</div>
+      <h1 className="text-2xl font-extrabold text-stone-800 mb-1 leading-tight">
+        Bienvenido a{' '}
+        <span className="bg-gradient-to-r from-orange-500 via-rose-500 to-pink-500 bg-clip-text text-transparent">
+          Patitas
+        </span>
+      </h1>
+      <p className="text-sm text-stone-400 mb-6">
+        Conectamos animales rescatados con hogares llenos de amor.
+      </p>
+      <div className="flex flex-col gap-3">
+        <a
+          href="/registro"
+          className="w-full bg-orange-500 text-white font-bold py-3.5 rounded-2xl text-sm shadow-md hover:bg-orange-600 transition-colors"
+        >
+          Crear cuenta gratis
+        </a>
+        <a
+          href="/login"
+          className="w-full bg-white text-orange-500 font-bold py-3.5 rounded-2xl text-sm border border-orange-200 hover:bg-orange-50 transition-colors"
+        >
+          Ingresar
+        </a>
+      </div>
+    </section>
   )
 }
 
