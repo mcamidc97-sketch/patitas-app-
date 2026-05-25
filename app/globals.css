@@ -1,0 +1,32 @@
+@import "tailwindcss";
+
+:root {
+  --background: #fff8f0;
+  --foreground: #3d2c2c;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-fredoka);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-fredoka), 'Segoe UI', Arial, sans-serif;
+}
+
+@keyframes paw-float {
+  0%, 100% { transform: translateY(0) rotate(-8deg); }
+  50% { transform: translateY(-12px) rotate(8deg); }
+}
+@keyframes bone-sway {
+  0%, 100% { transform: translateY(0) rotate(12deg); }
+  50% { transform: translateY(-10px) rotate(-12deg); }
+}
+.paw-float        { animation: paw-float  4s   ease-in-out infinite; }
+.paw-float-slow   { animation: paw-float  6s   ease-in-out infinite 1.2s; }
+.paw-float-delay  { animation: paw-float  4.5s ease-in-out infinite 2.5s; }
+.bone-sway        { animation: bone-sway  5s   ease-in-out infinite 0.6s; }
+.bone-sway-fast   { animation: bone-sway  3.5s ease-in-out infinite; }
