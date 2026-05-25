@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
-import { revalidatePath } from 'next/cache'
 import { createClient } from '@/lib/supabase/server'
 import { iniciarConversacion } from '@/app/actions/chat'
 
@@ -36,13 +35,12 @@ export default async function SolicitudesPage() {
     .eq('fundacion_id', user.id)
     .order('created_at', { ascending: false })
 
-  // Mark all unread solicitudes as read and refresh home badge
+  // Mark all unread solicitudes as read
   await supabase
     .from('solicitudes')
     .update({ leida: true })
     .eq('fundacion_id', user.id)
     .eq('leida', false)
-  revalidatePath('/')
 
   // Paso 2: perfiles de los usuarios interesados (consulta separada)
   const usuarioIds = [...new Set((rawSolicitudes ?? []).map((s: Record<string, unknown>) => String(s.usuario_id)))]
