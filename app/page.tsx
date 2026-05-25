@@ -3,6 +3,7 @@ import { createClient } from '@/lib/supabase/server'
 import AdoptButton from './components/AdoptButton'
 import FavoritoButton from './components/FavoritoButton'
 import BuscarFundaciones from './components/BuscarFundaciones'
+import SolicitudesButton from './components/SolicitudesButton'
 
 type PerritoReal = {
   id: string
@@ -447,17 +448,7 @@ function PanelFundacion({
           >
             🐾 Publicar un perrito
           </Link>
-          <Link
-            href="/fundacion/solicitudes"
-            className="flex-1 relative flex items-center justify-center gap-2 bg-white/20 text-white font-bold text-sm py-3 rounded-xl hover:bg-white/30 transition-colors border border-white/30"
-          >
-            💌 Solicitudes
-            {solicitudesCount > 0 && (
-              <span className="absolute -top-2 -right-2 bg-yellow-400 text-stone-800 text-[10px] font-extrabold w-5 h-5 rounded-full flex items-center justify-center shadow">
-                {solicitudesCount > 99 ? '99+' : solicitudesCount}
-              </span>
-            )}
-          </Link>
+          <SolicitudesButton count={solicitudesCount} />
           <Link
             href="/fundacion/mis-perritos"
             className="flex-1 flex items-center justify-center gap-2 bg-white/20 text-white font-bold text-sm py-3 rounded-xl hover:bg-white/30 transition-colors border border-white/30"
